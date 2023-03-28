@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
 
-  let status : number = 0;
   Promise.all([fetch('http://localhost:3000/api/product'), fetch('http://localhost:3000/api/product/1')]).then(values => {
     for (const value of values) {
       let status = value.status;

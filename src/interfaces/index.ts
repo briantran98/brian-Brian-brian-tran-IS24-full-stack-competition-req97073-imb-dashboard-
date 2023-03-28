@@ -10,7 +10,7 @@ export type Data = {
 
 export type ProductResponse = {
     response_code : number
-    result : Data[]
+    result? : Data[]
 }
 
 export type HealthResponse = {
