@@ -1,12 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { mockData } from '@/lib/generateData';
-import { ProductResponse, Product } from '@/interfaces/index';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { mockData } from "@/lib/generateData";
+import { ProductResponse, Product } from "@/interfaces/index";
 
 const OK_STATUS_CODE = 200;
-const CREATED_STATUS_CODE = 201;
 const NOT_FOUND_STATUS_CODE = 404;
 const METHOD_NOT_ALLOWED_STATUS_CODE = 405;
-const CONFLICT_STATUS_CODE = 409;
 
 export default function productHandler(
   req: NextApiRequest,
@@ -19,7 +17,7 @@ export default function productHandler(
   const result = new Array<Product>();
   // Handle specific HTTP methods
   switch (method) {
-  case 'GET':
+  case "GET":
     // If Data is not null then return data and respond with 200
     if (mockData[mockDataIndex])
     {
@@ -32,7 +30,7 @@ export default function productHandler(
     return res.status(NOT_FOUND_STATUS_CODE).json({
       response_code: NOT_FOUND_STATUS_CODE
     });
-  case 'PUT':
+  case "PUT":
     // If Data is not null then update data return new data and respond with 200
     if (mockData[mockDataIndex])
     {
@@ -46,7 +44,7 @@ export default function productHandler(
     return res.status(NOT_FOUND_STATUS_CODE).json({
       response_code: NOT_FOUND_STATUS_CODE
     });
-  case 'DELETE':
+  case "DELETE":
     // If Data is not null then remove data and return new state with 200
     if (mockData[mockDataIndex])
     {
@@ -61,7 +59,7 @@ export default function productHandler(
     });
   // Inform client of methods available to this end point
   default:
-    res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+    res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
     res.status(METHOD_NOT_ALLOWED_STATUS_CODE).end(`Method ${method} Not Allowed`);
   }
 }
