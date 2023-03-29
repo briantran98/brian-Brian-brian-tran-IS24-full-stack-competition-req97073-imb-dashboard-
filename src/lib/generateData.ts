@@ -1,5 +1,6 @@
 import { uniqueNamesGenerator, names, adjectives } from 'unique-names-generator';
-import { Data } from '@/interfaces/index'
+import { Product } from '@/interfaces/index';
+import crypto from 'crypto';
 
 const generateName = (): string =>
 {
@@ -8,12 +9,12 @@ const generateName = (): string =>
     length: 2,
     separator: " "
   });
-}
+};
 
-export default function GenerateData(numberOfData : number) : Data[]
+export default function GenerateData(numberOfData : number) : Product[]
 {
-  const data : Data[] = new Array<Data>;
-  let id = 1
+  const data : Product[] = new Array<Product>;
+  let id = 1;
   for (let i: number = 0; i < numberOfData; i++)
   {
     const developers: string[] = new Array<string>;
@@ -23,7 +24,7 @@ export default function GenerateData(numberOfData : number) : Data[]
     }
 
     data.push({
-      productId: id++,
+      productId: crypto.randomUUID().split("-")[0],
       productName: uniqueNamesGenerator({
         dictionaries: [adjectives, names],
         length: 2,
@@ -34,10 +35,10 @@ export default function GenerateData(numberOfData : number) : Data[]
       Developers: developers,
       scrumMasterName: generateName(),
       startDate: new Date(Date.now() - (Math.random() * 500000000000) + 1000000000),
-      methodology: Math.floor(Math.random() * 2) ? "agile" : "waterfall"
-    })
+      methodology: Math.floor(Math.random() * 2) ? "Agile" : "Waterfall"
+    });
   }
   return data;
 }
 
-export const mockData : Data[] = GenerateData(40);
+export const mockData : Product[] = GenerateData(40);
