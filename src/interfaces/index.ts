@@ -1,5 +1,5 @@
-export type Data = {
-    productId: number,
+export type Product = {
+    productId: string,
     productName: string,
     productOwnerName: string,
     Developers: string[],
@@ -9,10 +9,25 @@ export type Data = {
 }
 
 export type ProductResponse = {
-    response_code : number
-    result? : Data[]
+    response_code : number,
+    result? : Product[]
 }
 
 export type HealthResponse = {
     response_code : number
+}
+
+export type FormInput = {
+    name : string,
+    value : string,
+    error : boolean
+}
+
+export type ProductFormInput = {
+    productName: FormInput,
+    productOwnerName: FormInput,
+    developers: FormInput,
+    scrumMasterName: FormInput,
+    startDate: FormInput,
+    methodology: FormInput
 }
