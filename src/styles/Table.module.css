@@ -1,0 +1,20 @@
+.table-header {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+	z-index: 1;
+	padding: 1rem 0 1rem 1rem;
+	background: #ffffff;
+	border-radius: 10px 10px 0 0;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.table-body {
+	height: 6rem;
+	/* text-align: center; */
+}
+
+.table-cell {
+	padding-left: 1rem;
+	border-bottom: 1px solid #e7e7e7;
+}
