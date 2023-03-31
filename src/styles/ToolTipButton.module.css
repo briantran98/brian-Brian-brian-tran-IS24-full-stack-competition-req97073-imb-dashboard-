@@ -1,5 +1,33 @@
 .tool-tip-window {
-    background: blue;
+    background: #ffffff;
+    border: 1px #e7e7e7 solid;
+    border-radius: 5px 0 5px 5px;
     padding: 0.5rem;
     position: absolute;
+    right: 48px;
+}
+
+.tool-button {
+    background: #ffffff;
+    border: none;
+    padding: .6rem;
+    line-height: 1rem;
+    font-weight: 600;
+}
+
+#tool-tip-menu:hover {
+    background: #e7e7e7;
+    border-radius: 100%;
+}
+
+.tool-button:hover {
+    border-radius: 5px;
+}
+
+.edit:hover {
+    background: #c5cbfa;
+}
+
+.delete:hover {
+    background: #ffe1e1
 }

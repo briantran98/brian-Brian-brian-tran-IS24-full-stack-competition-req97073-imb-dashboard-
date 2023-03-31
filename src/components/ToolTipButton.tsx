@@ -15,10 +15,10 @@ export default function ToolTipButton(props: {children?: any, onEditHanlder : (e
 
   return(
     <div>
-      <button onClick={handleButtonPress}>{props.children}</button>
+      <button id={toolTipButtonStyle["tool-tip-menu"]} className={toolTipButtonStyle["tool-button"]} onClick={handleButtonPress}>{props.children}</button>
       <div ref={isHidden ? null : wrapperRef} className={`${toolTipButtonStyle["tool-tip-window"]} ${isHidden ? homeStyle["hidden"] : ""}`}>
-        <button onClick={props.onEditHanlder}>Edit</button>
-        <button>Delete</button>
+        <button className={`${toolTipButtonStyle["tool-button"]} ${toolTipButtonStyle["edit"]}`} onClick={props.onEditHanlder}>Edit</button>
+        <button className={`${toolTipButtonStyle["tool-button"]} ${toolTipButtonStyle["delete"]}`}>Delete</button>
       </div>
     </div>
   );
