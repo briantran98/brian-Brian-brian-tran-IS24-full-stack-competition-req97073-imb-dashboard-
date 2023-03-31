@@ -7,6 +7,31 @@
   /* min-height: 100vh; */
 }
 
+.error {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: #ffffff;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.error-button {
+  height: 1rem;
+  width: 2rem;
+  background: #ffffff;
+  border: none;
+}
+
+.error-button:hover {
+  height: 1rem;
+  width: 2rem;
+  background: #d80a0a;
+  color: #ffffff;
+}
+
 .page-header {
   display: flex;
   justify-content: space-between;

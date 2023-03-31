@@ -4,6 +4,6 @@
     "indent": ["warn", 2],
     "semi":"warn",
     "quotes":"warn",
-    "brace-style":"warn"
+    "object-curly-spacing": ["error", "always"]
   }
 }

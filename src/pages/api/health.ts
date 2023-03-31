@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Response } from "@/interfaces/index";
+import { HealthResponse } from "@/interfaces/index";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<HealthResponse>
 ) {
 
-  Promise.all([fetch("http://localhost:3000/api/product"), fetch("http://localhost:3000/api/product/1")]).then(values => {
+  Promise.all([fetch("http://localhost:3000/api/product")]).then(values => {
     for (const value of values) {
       let status = value.status;
       status = value.status;

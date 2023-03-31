@@ -10,8 +10,8 @@ const CREATED_STATUS_CODE = 201;
 
 /**
  * Handler for api/product end point to get all products available
- * @param req 
- * @param res 
+ * @param req
+ * @param res
  */
 export default async function handler(
   req: NextApiRequest,
@@ -22,7 +22,7 @@ export default async function handler(
   const jsonDirectory = path.join(process.cwd(), "src/lib/staticMockData.json");
   //Read the json data file data.json
   const fileContents = await fs.readFile(jsonDirectory, "utf8");
-  const staticMockData : Response = JSON.parse(fileContents);
+  const staticMockData: Response = JSON.parse(fileContents);
   // const objectData = JSON.parse(jsonData);
   const result = new Array<Product>();
   switch (method) {
@@ -30,7 +30,7 @@ export default async function handler(
     return res.status(200).json({
       response_code: 200,
       // Progrommatically generated mock data
-      result : mockData
+      result: mockData,
       // Uncomment to use static mock data reading in from json file
       // result: staticMockData.result
     });
@@ -39,7 +39,7 @@ export default async function handler(
     let hasId = false;
     while (!hasId) {
       const productId = crypto.randomUUID().split("-")[0];
-      if (!mockData.find(data => data.productId === productId)) {
+      if (!mockData.find((data) => data.productId === productId)) {
         newData.productId = productId;
         hasId = true;
       }
@@ -48,7 +48,7 @@ export default async function handler(
     result.push(newData);
     return res.status(CREATED_STATUS_CODE).json({
       response_code: CREATED_STATUS_CODE,
-      result: result
+      result: result,
     });
   }
 }
