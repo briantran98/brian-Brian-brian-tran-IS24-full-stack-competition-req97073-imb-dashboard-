@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { HealthResponse } from "@/interfaces/index";
+import { Response } from "@/interfaces/index";
 
 export default async function handler(
   req: NextApiRequest,
