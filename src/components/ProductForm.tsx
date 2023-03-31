@@ -49,7 +49,7 @@ function ProductForm(
   const [formInputs, setFormInputs] = useState<ProductFormInput>({
     productName: { name: "Product Name", value: "" },
     productOwnerName: { name: "Product Owner", value: "" },
-    developers: { name: "Developer Names", value: "" },
+    developers: { name: "Developer Names (Max 5)", value: "" },
     scrumMasterName: { name: "Scrum Master", value: "" },
     startDate: { name: "Start Date", value: "" },
     methodology: { name: "Methodology ", value: "Waterfall" },
@@ -66,7 +66,7 @@ function ProductForm(
           value: product.productOwnerName,
         },
         developers: {
-          name: "Developer Names",
+          name: "Developer Names (Max 5)",
           value: product.developers.toString(),
         },
         scrumMasterName: {
@@ -110,6 +110,11 @@ function ProductForm(
   // Add button handler for making post requests
   const addHandler = async () => {
     const product: Product = createProduct();
+    if (product.developers && product.developers.length > 5)
+    {
+      alert("Too many developers added");
+      return;
+    }
     postRequest<Product, ProductResponse>("api/products",product).then(response => {
       // Add response to the list of products
       if (response.response_code !== 201) throw new Error();
@@ -139,6 +144,11 @@ function ProductForm(
   const saveHandler = () => {
     const updatedProduct = createProduct();
 
+    if (updatedProduct.developers && updatedProduct.developers.length > 5)
+    {
+      alert("Too many developers added");
+      return;
+    }
     // Update the specific product with the new information
     setData((prev) => {
       if (!prev.result) return prev;
@@ -169,6 +179,7 @@ function ProductForm(
   // Handler for on submit to send to either save or add handler
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
 
     // Checks to see if the ref is currently on the edit page or the add new product page
     // If true on edit page then pass off to saveHandler() else createa product and make post request

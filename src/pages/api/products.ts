@@ -7,6 +7,7 @@ import { ProductResponse, Product } from "@/interfaces/index";
 import crypto from "crypto";
 
 const CREATED_STATUS_CODE = 201;
+const NOT_ACCEPTABLE_STATUS_CODE = 406;
 
 /**
  * Handler for api/product end point to get all products available
@@ -22,7 +23,7 @@ export default async function handler(
   const jsonDirectory = path.join(process.cwd(), "src/lib/staticMockData.json");
   //Read the json data file data.json
   const fileContents = await fs.readFile(jsonDirectory, "utf8");
-  const staticMockData: Response = JSON.parse(fileContents);
+  const staticMockData: ProductResponse = JSON.parse(fileContents);
   // const objectData = JSON.parse(jsonData);
   const result = new Array<Product>();
   switch (method) {
@@ -37,12 +38,18 @@ export default async function handler(
   case "POST":
     let newData = req.body as Product;
     let hasId = false;
+    // Check if the Id is already in the array. if so make a new one
     while (!hasId) {
       const productId = crypto.randomUUID().split("-")[0];
       if (!mockData.find((data) => data.productId === productId)) {
         newData.productId = productId;
         hasId = true;
       }
+    }
+    if (newData.developers && newData.developers.length > 5) {
+      return res
+        .status(NOT_ACCEPTABLE_STATUS_CODE)
+        .end("Too many developers added");
     }
     mockData.push(newData);
     result.push(newData);
