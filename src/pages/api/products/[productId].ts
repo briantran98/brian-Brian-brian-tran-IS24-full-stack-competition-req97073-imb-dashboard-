@@ -5,6 +5,7 @@ import { ProductResponse, Product } from "@/interfaces/index";
 const OK_STATUS_CODE = 200;
 const NOT_FOUND_STATUS_CODE = 404;
 const METHOD_NOT_ALLOWED_STATUS_CODE = 405;
+const NOT_ACCEPTABLE_STATUS_CODE = 406;
 
 export default function productHandler(
   req: NextApiRequest,
@@ -19,8 +20,7 @@ export default function productHandler(
   switch (method) {
   case "GET":
     // If Data is not null then return data and respond with 200
-    if (mockData[mockDataIndex])
-    {
+    if (mockData[mockDataIndex]) {
       result.push(mockData[mockDataIndex]);
       return res.status(OK_STATUS_CODE).json({
         response_code: OK_STATUS_CODE,
@@ -32,8 +32,11 @@ export default function productHandler(
     });
   case "PUT":
     // If Data is not null then update data return new data and respond with 200
-    if (mockData[mockDataIndex])
-    {
+    const product = req.body as Product;
+    if (product.developers && product.developers.length > 5) {
+      return res.status(NOT_ACCEPTABLE_STATUS_CODE).end("Too many developers added");
+    }
+    if (mockData[mockDataIndex]) {
       mockData[mockDataIndex] = req.body as Product;
       result.push(req.body);
       return res.status(OK_STATUS_CODE).json({
@@ -46,8 +49,7 @@ export default function productHandler(
     });
   case "DELETE":
     // If Data is not null then remove data and return new state with 200
-    if (mockData[mockDataIndex])
-    {
+    if (mockData[mockDataIndex]) {
       mockData.splice(mockDataIndex, 1);
       return res.status(OK_STATUS_CODE).json({
         response_code: OK_STATUS_CODE,
