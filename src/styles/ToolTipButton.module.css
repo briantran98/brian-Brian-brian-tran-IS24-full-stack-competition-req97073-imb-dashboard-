@@ -1,0 +1,5 @@
+.tool-tip-window {
+    background: blue;
+    padding: 0.5rem;
+    position: absolute;
+}
