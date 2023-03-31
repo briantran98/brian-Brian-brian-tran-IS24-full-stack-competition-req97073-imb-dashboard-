@@ -154,7 +154,7 @@ function ProductForm(
     if (!product) return;
     let response: ProductResponse;
     putRequest<Product, ProductResponse>(
-      `api/product/${updatedProduct.productId}`,
+      `api/products/${updatedProduct.productId}`,
       updatedProduct
     ).then((res) => {
       if (res.response_code !== 200) throw new Error();
