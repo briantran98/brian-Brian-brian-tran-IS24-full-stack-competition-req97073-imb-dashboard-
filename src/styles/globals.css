@@ -9,19 +9,32 @@
   margin: 0;
 }
 
-
+/* html {
+  font-family
+} */
 
 table {
   text-align: left;
-  position: relative;
-  border-collapse: collapse; 
+  border: 1px solid #e7e7e7;
+  border-radius: 10px; 
+  border-spacing: 0;
+}
+
+label {
+  font-size: .9rem;
 }
 
 th {
-  position: sticky;
-  top: 0;
+  padding-left: 1rem;
 }
 
+thead {
+  border-radius: inherit;
+}
+
+tr {
+  border-radius: inherit;  
+}
 
 /* @media (prefers-color-scheme: dark) {
   html {
