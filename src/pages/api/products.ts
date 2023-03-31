@@ -25,8 +25,7 @@ export default async function handler(
   const staticMockData : Response = JSON.parse(fileContents);
   // const objectData = JSON.parse(jsonData);
   const result = new Array<Product>();
-  switch (method)
-  {
+  switch (method) {
   case "GET":
     return res.status(200).json({
       response_code: 200,
@@ -38,11 +37,9 @@ export default async function handler(
   case "POST":
     let newData = req.body as Product;
     let hasId = false;
-    while (!hasId)
-    {
+    while (!hasId) {
       const productId = crypto.randomUUID().split("-")[0];
-      if (!mockData.find(data => data.productId === productId))
-      {
+      if (!mockData.find(data => data.productId === productId)) {
         newData.productId = productId;
         hasId = true;
       }
