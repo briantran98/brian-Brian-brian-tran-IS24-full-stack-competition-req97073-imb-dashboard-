@@ -3,6 +3,7 @@
   "rules": {
     "indent": ["warn", 2],
     "semi":"warn",
-    "quotes":"warn"
+    "quotes":"warn",
+    "brace-style":"warn"
   }
 }
