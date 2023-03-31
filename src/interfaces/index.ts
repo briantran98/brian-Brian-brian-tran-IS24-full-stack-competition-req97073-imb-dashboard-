@@ -1,11 +1,13 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Product = {
-    productId: string,
-    productName: string,
-    productOwnerName: string,
-    Developers: string[],
-    scrumMasterName: string,
+    productId?: string,
+    productName?: string,
+    productOwnerName?: string,
+    developers?: string[],
+    scrumMasterName?: string,
     startDate: Date,
-    methodology: string
+    methodology?: string
 }
 
 export type ProductResponse = {
@@ -19,7 +21,7 @@ export type HealthResponse = {
 
 export type FormInput = {
     name : string,
-    value : string,
+    value? : string,
     error : boolean
 }
 
