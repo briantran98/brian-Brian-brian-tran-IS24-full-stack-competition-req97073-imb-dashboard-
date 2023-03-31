@@ -10,10 +10,12 @@ import {
 } from "react";
 import { ProductResponse, Product, ProductFormInput } from "@/interfaces/index";
 import ProductFormStyles from "@/styles/ProductForm.module.css";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { postRequest, putRequest } from "@/lib/apiCalls";
 
-const inter = Inter({ subsets: ["latin"] });
+const myFont = localFont({
+  src: "../fonts/Inter/Inter-VariableFont_slnt,wght.ttf",
+});
 
 /**
  * ProductForm component used to fill out details of a product to either be add or edited. Makes post and put requests to the server
@@ -239,7 +241,7 @@ function ProductForm(
          */}
         {key === "startDate" ? (
           <input
-            className={inter.className}
+            className={myFont.className}
             type="date"
             onChange={(e) => onChangeHandler(e, keyCopy)}
             required={true}
@@ -247,7 +249,7 @@ function ProductForm(
           />
         ) : key === "developers" ? (
           <textarea
-            className={`${ProductFormStyles["text-area-input"]} ${inter.className}`}
+            className={`${ProductFormStyles["text-area-input"]} ${myFont.className}`}
             required={true}
             onChange={(e) => onTextAreaChangeHandler(e, keyCopy)}
             value={formInputs[key].value}
@@ -263,7 +265,7 @@ function ProductForm(
           </select>
         ) : (
           <input
-            className={`${inter.className} ${ProductFormStyles["product-input"]}`}
+            className={`${myFont.className} ${ProductFormStyles["product-input"]}`}
             type={"text"}
             required={true}
             onChange={(e) => onChangeHandler(e, keyCopy)}
