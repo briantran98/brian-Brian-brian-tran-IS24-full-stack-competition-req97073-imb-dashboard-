@@ -1,9 +1,8 @@
-import { uniqueNamesGenerator, names, adjectives } from 'unique-names-generator';
-import { Product } from '@/interfaces/index';
-import crypto from 'crypto';
+import { uniqueNamesGenerator, names, adjectives } from "unique-names-generator";
+import { Product } from "@/interfaces/index";
+import crypto from "crypto";
 
-const generateName = (): string =>
-{
+const generateName = (): string => {
   return uniqueNamesGenerator({
     dictionaries: [names, names],
     length: 2,
@@ -11,15 +10,11 @@ const generateName = (): string =>
   });
 };
 
-export default function GenerateData(numberOfData : number) : Product[]
-{
+export default function GenerateData(numberOfData : number) : Product[] {
   const data : Product[] = new Array<Product>;
-  let id = 1;
-  for (let i: number = 0; i < numberOfData; i++)
-  {
+  for (let i: number = 0; i < numberOfData; i++) {
     const developers: string[] = new Array<string>;
-    for (let j: number = 0; j < (Math.random() * 10 + 1); j++)
-    {
+    for (let j: number = 0; j < (Math.random() * 4 + 1); j++) {
       developers.push(generateName());
     }
 
@@ -28,11 +23,11 @@ export default function GenerateData(numberOfData : number) : Product[]
       productName: uniqueNamesGenerator({
         dictionaries: [adjectives, names],
         length: 2,
-        style: 'capital',
+        style: "capital",
         separator: " "
       }),
       productOwnerName: generateName(),
-      Developers: developers,
+      developers: developers,
       scrumMasterName: generateName(),
       startDate: new Date(Date.now() - (Math.random() * 500000000000) + 1000000000),
       methodology: Math.floor(Math.random() * 2) ? "Agile" : "Waterfall"
